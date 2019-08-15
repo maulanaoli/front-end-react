@@ -26,7 +26,13 @@ class App extends React.Component {
     });
     return jsx;
   };
+  addData = () => {
+    var isi = this.state.count;
 
+    isi.push(this.state.name);
+    this.setState({ count: isi });
+    this.refs.inputku.value = "";
+  };
   render() {
     return (
       <div>
@@ -37,14 +43,13 @@ class App extends React.Component {
           <h3> To Do List</h3>
           <ol style={{ margin: "auto" }}>{this.renderData()}</ol>
           <br />
-          <input type="text" ref="inputku" placeholder="Masukan text" />{" "}
           <input
-            type="button"
-            value="ADD TODO"
-            onClick={() => {
-              this.setState(this.state.count.push(this.refs.inputku.values));
-            }}
-          />
+            type="text"
+            ref="inputku"
+            placeholder="Masukan text"
+            onChange={() => this.setState({ name: this.refs.inputku.value })}
+          />{" "}
+          <input type="button" value="ADD TODO" onClick={this.addData} />
         </div>
         <div className="bot-footer">
           <Footer />
