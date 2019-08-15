@@ -12,16 +12,20 @@ class App extends React.Component {
   renderData = () => {
     var jsx = this.state.count.map((val, idx) => {
       return (
-        <li style={{ marginTop: "20px" }}>
-          {val}{" "}
-          <input
-            style={{ marginLeft: "50px" }}
-            type="button"
-            value="Delete"
-            className="btn-danger"
-            onClick={() => this.setState(this.state.count.splice(idx, 1))}
-          />
-        </li>
+        <tr>
+          <td>{idx + 1}.</td>
+          <td>{val}</td>
+          <td>
+            {" "}
+            <input
+              style={{ marginLeft: "50px" }}
+              type="button"
+              value="Delete"
+              className="btn-danger"
+              onClick={() => this.setState(this.state.count.splice(idx, 1))}
+            />
+          </td>
+        </tr>
       );
     });
     return jsx;
@@ -39,17 +43,25 @@ class App extends React.Component {
         <div className="header">
           <Header />
         </div>
-        <div className="body">
+        <div className="text-center">
           <h3> To Do List</h3>
-          <ol style={{ margin: "auto" }}>{this.renderData()}</ol>
+          <div className="d-flex justify-content-center">
+            <table className="table-light">{this.renderData()}</table>
+          </div>
           <br />
           <input
+            className=""
             type="text"
             ref="inputku"
             placeholder="Masukan text"
             onChange={() => this.setState({ name: this.refs.inputku.value })}
-          />{" "}
-          <input type="button" value="ADD TODO" onClick={this.addData} />
+          />
+          <input
+            className="btn btn-success"
+            type="button"
+            value="ADD TODO"
+            onClick={this.addData}
+          />
         </div>
         <div className="bot-footer">
           <Footer />
