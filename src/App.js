@@ -42,7 +42,7 @@ class App extends React.Component {
             type="button"
             value="ADD TODO"
             onClick={() => {
-              this.setState({ name: this.refs.inputku });
+              this.setState(this.state.count.push(this.refs.inputKu.value));
             }}
           />
         </div>
